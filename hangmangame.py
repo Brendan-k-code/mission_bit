@@ -1,13 +1,11 @@
 import random
 import tkinter
-from turtle import back
 from tkinter import *
 import tkinter.font as tkFont
 
-from PIL import Image, ImageDraw
-image = Image.open('hangman.gif')
 
-#a really long list of word
+
+#a really long list of words
 listofwords = [
     "electricity","donkey","hardware","xerox","transistor","computer","desktop","engineering","hangman","circuit","imagination","robot","memory","power","submarine","chess","resistance","matrix","function","laser","mechanism","bodyguard","titanic","global","ozone","bridge","technology","spider","pyramid","sphere","member","warning","yourself","screen","language","system","internet","parameter","traffic","network","filter","nucleus","automatic","microphone","cassette","operation","country","beautiful","picture","teacher","superman","undertaker","alarm","process","keyboard","electron","certificate","grandfather","landmark","relativity","eraser","ambivalent","design","football","human","musician","egyptian","elephant","queen","record","message","wallpaper","nationality","answer","wrong","statement","forest","puzzle","voltage","current","mathematics","wisdom","dream","supermarket","database","collection","barrier","project","sunlight","figure","graph","battle","hundred","signal","thousand","transformation","daughter","flower","communication","microwave","electronic","peace","wireless","delete","wind","brain","control","prophet","freedom","harbour","confidence","positive","harvest","hunger","woman","children","stranger","garden","pleasure","laugh","between","recognition","tomorrow","autumn","monkey","spring","winter","classification","typewriter","success","difference","acoustics","astronomy","agreement","sorrow","christmas","silver","birthday","championship","friend","comfortable","diffusion","policeman","science","desert","basketball","blood","funeral","silence","garment","merchant","spirit","punishment","measurement","ocean","digital","illusion","tyrant","castle","passion","magician","remedy","knowledge","threshold","number","vision","expectation","absence","mystery","morning","device","thoughts","spirit","future","import","mountain","treasure","machine","whispering","eternity","reflection","occupation","achievement","lightning","secret","environment","shepherd","confusion","grave","promise","honor","reward","temple","distance","eagle","saturn","finger","belief","crystal","fashion","direction","captain","moment","permission","logic","analysis","password","english","equalizer","simulation","emotion","battle","expression","scissors","trousers","glasses","department","dictionary","chemistry","induction","detail","widow","wealth","health","disaster","volcano","poverty","limitation","perfect","intelligence","failure","ignorance","destination","source","resort","satisfaction","exam","frequency","selection","substitution","kingdom","pattern","management","situation","multiply","treatment","dollar","intuition","chapter","magnet", "desire","command","action","consciousness","enemy","security","object","happen","happiness","worry","method","tolerance","error","hesitation","record","tongue","supply","vibration","stress","despair","restaurant","television","video","audio","layer","mixture","doorbell","cousin","beard","finance","production","invisible","excitement","afternoon","office","alpha","illustration","valley","apartment","necessary","shortage","almost","furniture","blanket","suggestion","overflow","demonstration","challenge","compact","tower","question","problem","pressure","beast","encouragement","afraid","cavity","appearance","wonderful","matter","dimension","business","doubt","conversation","reaction","psychology","superstition","smash","horseshoe","surprise","nothing","ladder","opposite","reality","genius","string","destruction","expensive","painting","chicken","wishing","profession","hatred","possession","criticism","zebra","harmony","personality","overcompensate","addition","subtraction","cipher","encryption","compression","extension","blessing","meeting","difficulty","weapon","against","external","internal","legend","servant","secondary","license","directory","statistics","generation","attraction","sensitivity","magnification","someone","symptom","recipe","service","family","island","planet","butterfly","diving","strength","extreme","opportunity","illumination","cable","conflict","interference","receiver","transmitter","channel","company","grocery","devil","angel","exactly","document","tutorial","sound","voice","abbreviation","abdomen","abrupt","absolute","absorption","abstract","academy","acceleration","accident","account","acidification","actress","adaptation","addiction","adjustment","admiration","adoption","advanced","adventure","advertisement","agenda","airport","algorithm","allocation","aluminum","ambiguity","amphibian","anesthesia","analogy","anchor","animation","anode","cathode" ,"apparent","appendix","approval","approximation","arbitrary","architecture", "arithmetic","arrangement","article","ascending","ashamed","asleep","assembly","astonishment","atmosphere","awful","bachelor","backbone","bacteria","balance","balloon","banana","barbecue","baseball","beaker","beggar","behavior","benefit","bidirectional","biology","blackboard","bladder","bleeding","blender","bonus","bottle","bracket","branch","bubble","bucket","budget","burglar","butcher","bypass","calculator","calibration","campaign","cancellation","candidate","candle","carpenter","carriage","cartoon","cascade","casual","catalyst","category","cement","ceremony","chairman","checkout","chimney","chocolate","circumference","civilization","classroom","clearance","client","coconut","coincidence","colleague","comfortable","competition","kangaroo","kidnap","journal","jockey","iteration","isometric","isolation","invitation","institution","injection","humanity","housekeeper","history","heaven","greenhouse","glory","foundation","formula","fluctuation","fiction","emission","elasticity","earthquake","dynamic","doctorate","divorce","nightmare","virtue","description","baguette","photosynthesis",]
 tempanswer = random.choice(listofwords)
@@ -25,6 +23,7 @@ livesleft = 10
 print(answer)
 def on_button_click():
     global livesleft
+    global tk_image1, tk_image2, tk_image3, tk_image4, tk_image5, tk_image6, tk_image7, tk_image8, tk_image9, tk_image10
     guess = guessentry.get()
     guess = guess.upper()
     if guessentry.get().isalpha() == False or len(guessentry.get()) > 1:
@@ -57,13 +56,33 @@ def on_button_click():
             formatcurrentwordstatus = ""
             for x in currentwordstatus:  # reformats the censor
                 formatcurrentwordstatus += x
+
         guessedlettersentry.delete(0, END)
         guessedletters.append(guess)
         guessedlettersentry.insert(END, guessedletters)
-
+    if livesleft ==9:
+        print("yes")
+        picture.config(image=tk_image1)
+    if livesleft ==8:
+        picture.config(image=tk_image2)
+    if livesleft ==7:
+        picture.config(image=tk_image3)
+    if livesleft ==6:
+        picture.config(image=tk_image4)
+    if livesleft ==5:
+        picture.config(image=tk_image5)
+    if livesleft ==4:
+        picture.config(image=tk_image6)
+    if livesleft ==3:
+        picture.config(image=tk_image7)
+    if livesleft ==2:
+        picture.config(image=tk_image8)
+    if livesleft ==1:
+        picture.config(image=tk_image9)
     if livesleft <= 0:
         disclaimer.insert(END,"You ran out of lives.")
         main.config(background="red")
+        picture.config(image=tk_image10)
         open_lose_window()
     if answer == formatcurrentwordstatus:
         disclaimer.insert(END,f"YOU GUESSED IT!") 
@@ -72,10 +91,71 @@ def on_button_click():
         disclaimer.insert(END,f"The phrase was {answer}")
 
 
+
 main = tkinter.Tk()
 main.geometry("750x750")
 main.title("Hangman")
 
+
+from PIL import Image, ImageDraw, ImageTk
+
+image0 = Image.open("frame0.png")  
+image0 = image0.resize((300,300))  # Resize the image to fit the label
+tk_image0 = ImageTk.PhotoImage(image0)
+image0.save("frame0.png")
+
+image1 = Image.open("frame1.png")  
+image1 = image1.resize((300,300))  # Resize the image to fit the label
+tk_image1 = ImageTk.PhotoImage(image1)
+image1.save("frame1.png")
+
+
+
+
+image2 = Image.open("frame2.png")  
+image2 = image2.resize((300,300))  # Resize the image to fit the label
+tk_image2 = ImageTk.PhotoImage(image2)
+image2.save("frame2.png")
+
+image3 = Image.open("frame3.png")  
+image3 = image3.resize((300,300))  # Resize the image to fit the label
+tk_image3 = ImageTk.PhotoImage(image3)
+image3.save("frame3.png")
+
+image4 = Image.open("frame4.png")  
+image4 = image4.resize((300,300))  # Resize the image to fit the label 
+tk_image4 = ImageTk.PhotoImage(image4)
+image4.save("frame4.png")
+
+image5 = Image.open("frame5.png")  
+image5 = image5.resize((300,300))  # Resize the image to fit the label
+tk_image5 = ImageTk.PhotoImage(image5)
+image5.save("frame5.png")
+
+image6 = Image.open("frame6.png")  
+image6 = image6.resize((300,300))  # Resize the image to fit the label 
+tk_image6 = ImageTk.PhotoImage(image6)
+image6.save("frame6.png")
+
+image7 = Image.open("frame7.png")  
+image7 = image7.resize((300,300))  # Resize the image to fit the label 
+tk_image7 = ImageTk.PhotoImage(image7)
+image7.save("frame7.png")
+
+image8 = Image.open("frame8.png")  
+image8 = image8.resize((300,300))  # Resize the image to fit the label 
+tk_image8 = ImageTk.PhotoImage(image8)
+image8.save("frame8.png")
+
+image9 = Image.open("frame9.png") 
+image9 = image9.resize((300,300))  # Resize the image to fit the label  
+tk_image9 = ImageTk.PhotoImage(image9)
+image9.save("frame9.png")
+
+image10 = Image.open("frame10.png") 
+image10 = image10.resize((300,300))  # Resize the image to fit the label
+tk_image10 = ImageTk.PhotoImage(image10)
+image10.save("frame10.png")
 
 def open_win_window():
     new_window = tkinter.Toplevel(main)  # Create a Toplevel window, parented to 'root'
@@ -100,7 +180,7 @@ def open_lose_window():
 custom_font = tkFont.Font(family="Arial", size=35)
 guessentry = Entry(main)
 
-picture = Label(main, width=20, height=17, background="grey", image = "hangman.gif")
+picture = Label(main, width=400, height=400, background="grey",image=tk_image0)
 
 button = tkinter.Button(main, text="Guess", command=on_button_click)
 

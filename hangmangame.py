@@ -97,79 +97,75 @@ main.geometry("750x750")
 main.title("Hangman")
 
 
-from PIL import Image, ImageDraw, ImageTk
+from PIL import Image, ImageTk
 
 image0 = Image.open("frame0.png")  
-image0 = image0.resize((300,300))  # Resize the image to fit the label
+image0 = image0.resize((300,300))  
 tk_image0 = ImageTk.PhotoImage(image0)
 image0.save("frame0.png")
 
 image1 = Image.open("frame1.png")  
-image1 = image1.resize((300,300))  # Resize the image to fit the label
+image1 = image1.resize((300,300)) 
 tk_image1 = ImageTk.PhotoImage(image1)
 image1.save("frame1.png")
 
-
-
-
 image2 = Image.open("frame2.png")  
-image2 = image2.resize((300,300))  # Resize the image to fit the label
+image2 = image2.resize((300,300))  
 tk_image2 = ImageTk.PhotoImage(image2)
 image2.save("frame2.png")
 
 image3 = Image.open("frame3.png")  
-image3 = image3.resize((300,300))  # Resize the image to fit the label
+image3 = image3.resize((300,300))  
 tk_image3 = ImageTk.PhotoImage(image3)
 image3.save("frame3.png")
 
 image4 = Image.open("frame4.png")  
-image4 = image4.resize((300,300))  # Resize the image to fit the label 
+image4 = image4.resize((300,300)) 
 tk_image4 = ImageTk.PhotoImage(image4)
 image4.save("frame4.png")
 
 image5 = Image.open("frame5.png")  
-image5 = image5.resize((300,300))  # Resize the image to fit the label
+image5 = image5.resize((300,300))  
 tk_image5 = ImageTk.PhotoImage(image5)
 image5.save("frame5.png")
 
 image6 = Image.open("frame6.png")  
-image6 = image6.resize((300,300))  # Resize the image to fit the label 
+image6 = image6.resize((300,300))  
 tk_image6 = ImageTk.PhotoImage(image6)
 image6.save("frame6.png")
 
 image7 = Image.open("frame7.png")  
-image7 = image7.resize((300,300))  # Resize the image to fit the label 
+image7 = image7.resize((300,300))  
 tk_image7 = ImageTk.PhotoImage(image7)
 image7.save("frame7.png")
 
 image8 = Image.open("frame8.png")  
-image8 = image8.resize((300,300))  # Resize the image to fit the label 
+image8 = image8.resize((300,300))  
 tk_image8 = ImageTk.PhotoImage(image8)
 image8.save("frame8.png")
 
 image9 = Image.open("frame9.png") 
-image9 = image9.resize((300,300))  # Resize the image to fit the label  
+image9 = image9.resize((300,300))  
 tk_image9 = ImageTk.PhotoImage(image9)
 image9.save("frame9.png")
 
 image10 = Image.open("frame10.png") 
-image10 = image10.resize((300,300))  # Resize the image to fit the label
+image10 = image10.resize((300,300))  
 tk_image10 = ImageTk.PhotoImage(image10)
 image10.save("frame10.png")
 
 def open_win_window():
-    new_window = tkinter.Toplevel(main)  # Create a Toplevel window, parented to 'root'
+    new_window = tkinter.Toplevel(main)  
     new_window.title("YOU WON HANGMAN")
-    new_window.geometry("400x400") # Set the window size
+    new_window.geometry("400x400") 
 
     label = tkinter.Label(new_window, text="YOU WON HANGMAN!",font=custom_font)
     label.pack(pady=20,anchor=CENTER)
 
 def open_lose_window():
-    new_window = tkinter.Toplevel(main)  # Create a Toplevel window, parented to 'root'
+    new_window = tkinter.Toplevel(main)  
     new_window.title("You lost.")
-    new_window.geometry("400x400") # Set the window size
-
+    new_window.geometry("400x400")
     label = tkinter.Label(new_window, text="You lost.",font=custom_font)
     label.pack(pady=20,anchor=CENTER)
 
